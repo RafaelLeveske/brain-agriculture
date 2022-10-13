@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CreateRuralProducerDto } from '../dto/create-rural-producer.dto';
-import { UpdateRuralProducerDto } from '../dto/update-rural-producer.dto';
+import { CreateRuralProducerDto } from '../dtos/create-rural-producer.dto';
+import { UpdateRuralProducerDto } from '../dtos/update-rural-producer.dto';
 import { RuralProducer } from '../infra/database/entities/rural-producer.entity';
 
 @Injectable()
