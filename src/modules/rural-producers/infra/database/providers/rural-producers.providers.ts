@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { RuralProducer } from './entities/rural-producer.entity';
+import { RuralProducer } from '../entities/rural-producer.entity';
 
 export const ruralProducerProviders = [
   {

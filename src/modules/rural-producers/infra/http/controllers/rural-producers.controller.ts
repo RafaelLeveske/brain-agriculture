@@ -7,9 +7,9 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { RuralProducersService } from './rural-producers.service';
-import { CreateRuralProducerDto } from './dto/create-rural-producer.dto';
-import { UpdateRuralProducerDto } from './dto/update-rural-producer.dto';
+import { CreateRuralProducerDto } from 'src/modules/rural-producers/dto/create-rural-producer.dto';
+import { UpdateRuralProducerDto } from 'src/modules/rural-producers/dto/update-rural-producer.dto';
+import { RuralProducersService } from 'src/modules/rural-producers/services/rural-producers.service';
 
 @Controller('rural-producers')
 export class RuralProducersController {
