@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { RuralProducersModule } from './rural-producers/rural-producers.module';
 import { ConfigModule } from '@nestjs/config';
+import { RuralProducersModule } from 'src/modules/rural-producers/module/rural-producers.module';
 
 @Module({
   imports: [ConfigModule.forRoot(), RuralProducersModule],
