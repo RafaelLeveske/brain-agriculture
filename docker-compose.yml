@@ -13,6 +13,15 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-brain_agriculture}
     volumes:
        - pgdata:/data/postgres
+    network_mode: host
+  app:
+    build: .
+    container_name: brain_agriculture
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
+    network_mode: host
 
 volumes:
     pgdata:
