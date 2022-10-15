@@ -1,32 +1,32 @@
-import { Inject, Injectable } from '@nestjs/common';
-import generateUUID from 'src/shared/utils/generateUUID';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 import { CreateRuralProducerDto } from '../dtos/create-rural-producer.dto';
 import { RuralProducer } from '../infra/database/entities/rural-producer.entity';
+import RuralProducerRepositoryImplementation from '../infra/database/repositories/implementations/rural-producer-repository-implementation';
 
 @Injectable()
-export class RuralProducersService {
+export class CreateRuralProducersService {
   constructor(
-    @Inject('RURAL_PRODUCER_REPOSITORY')
-    private ruralProducerRepository: Repository<RuralProducer>,
+    private ruralProducerRepositoryImplementation: RuralProducerRepositoryImplementation,
   ) {}
 
   public async execute(
     createRuralProducerDto: CreateRuralProducerDto,
-  ): Promise<any> {
-    const client = await this.ruralProducerRepository.save({
-      id: generateUUID.createUUID(),
-      agriculturalHectaresArea:
-        createRuralProducerDto.agricultural_hectares_area,
-      city: createRuralProducerDto.city,
-      documentNumber: createRuralProducerDto.document_number,
-      farmHectaresTotalArea: createRuralProducerDto.farm_hectares_total_area,
-      farmName: createRuralProducerDto.farm_name,
-      producerName: createRuralProducerDto.producer_name,
-      state: createRuralProducerDto.state,
-      vegetationHectaresArea: createRuralProducerDto.vegetation_hectares_area,
-      cropsPlanted: createRuralProducerDto.crops_planted,
-    });
+  ): Promise<RuralProducer> {
+    const client =
+      await this.ruralProducerRepositoryImplementation.createRuralProducer({
+        agricultural_hectares_area:
+          createRuralProducerDto.agricultural_hectares_area,
+        city: createRuralProducerDto.city,
+        document_number: createRuralProducerDto.document_number,
+        farm_hectares_total_area:
+          createRuralProducerDto.farm_hectares_total_area,
+        farm_name: createRuralProducerDto.farm_name,
+        producer_name: createRuralProducerDto.producer_name,
+        state: createRuralProducerDto.state,
+        vegetation_hectares_area:
+          createRuralProducerDto.vegetation_hectares_area,
+        crops_planted: createRuralProducerDto.crops_planted,
+      });
 
     return client;
   }
