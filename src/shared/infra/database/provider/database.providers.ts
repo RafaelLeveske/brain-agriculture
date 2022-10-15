@@ -12,7 +12,7 @@ export const databaseProviders = [
         username: process.env.POSTGRES_USER,
         password: process.env.POSTGRES_PASSWORD,
         database: process.env.POSTGRES_DATABASE,
-        entities: [join(__dirname, '**', '**', '**', '**', '*.entity.{ts,js}')],
+        entities: [__dirname + '/../../../../**/*.entity.{js,ts}'],
         synchronize: true,
       });
 
