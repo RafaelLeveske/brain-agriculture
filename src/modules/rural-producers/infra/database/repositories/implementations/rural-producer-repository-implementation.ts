@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CreateRuralProducerDto } from 'src/modules/rural-producers/dtos/create-rural-producer.dto';
+import AppError from 'src/shared/errors/app-error';
 import generateUUID from 'src/shared/utils/generateUUID';
 import { Repository } from 'typeorm';
 import { RuralProducer } from '../../entities/rural-producer.entity';
@@ -41,7 +42,7 @@ export default class RuralProducerRepositoryImplementation
 
       return client;
     } catch (error) {
-      throw new Error(error.message);
+      throw new AppError(error.message);
     }
   }
 }
