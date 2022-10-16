@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import AppError from 'src/shared/errors/app-error';
+import { AppError } from 'src/shared/errors/app-error';
 import { CreateRuralProducerDto } from '../dtos/create-rural-producer.dto';
 import RuralProducerRepositoryImplementation from '../infra/database/repositories/implementations/rural-producer-repository-implementation';
 import { CreateRuralProducersService } from '../services/create-rural-producers.service';

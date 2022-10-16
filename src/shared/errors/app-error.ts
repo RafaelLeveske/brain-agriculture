@@ -1,6 +1,6 @@
 import { HttpException } from '@nestjs/common';
 
-export default class AppError extends HttpException {
+export class AppError extends HttpException {
   public readonly message: string;
 
   public readonly statusCode: number;

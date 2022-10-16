@@ -3,7 +3,7 @@ import { CreateRuralProducerDto } from '../dtos/create-rural-producer.dto';
 import { CreateRuralProducersServicesResponse } from '../dtos/create-rural-producers.service-dto';
 import RuralProducerRepositoryImplementation from '../infra/database/repositories/implementations/rural-producer-repository-implementation';
 import { cpf as cpfValidator, cnpj as cnpjValidator } from 'cpf-cnpj-validator';
-import AppError from 'src/shared/errors/app-error';
+import { AppError } from 'src/shared/errors/app-error';
 
 @Injectable()
 export class CreateRuralProducersService {
