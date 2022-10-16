@@ -9,8 +9,8 @@ export type CropsPlantedType =
 
 @Entity()
 export class RuralProducer {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   documentNumber: string;
@@ -39,6 +39,7 @@ export class RuralProducer {
   @Column({
     type: 'enum',
     enum: ['soy', 'corn', 'cotton', 'coffee', 'sugar_cane'],
+    array: true,
   })
-  cropsPlanted: CropsPlantedType;
+  cropsPlanted: CropsPlantedType[];
 }

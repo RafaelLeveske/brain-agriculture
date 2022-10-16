@@ -1,12 +1,17 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'src/shared/infra/database/database.module';
-import { ruralProducerProviders } from '../infra/database/providers/rural-producers.providers';
+import RuralProducerRepositoryImplementation from '../infra/database/repositories/implementations/rural-producer-repository-implementation';
+import { ruralProducerRepository } from '../infra/database/repositories/rural-producers.repository';
 import { RuralProducersController } from '../infra/http/controllers/rural-producers.controller';
-import { RuralProducersService } from '../services/rural-producers.service';
+import { CreateRuralProducersService } from '../services/create-rural-producers.service';
 
 @Module({
   imports: [DatabaseModule],
   controllers: [RuralProducersController],
-  providers: [...ruralProducerProviders, RuralProducersService],
+  providers: [
+    ...ruralProducerRepository,
+    CreateRuralProducersService,
+    RuralProducerRepositoryImplementation,
+  ],
 })
 export class RuralProducersModule {}
