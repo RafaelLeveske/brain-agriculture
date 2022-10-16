@@ -1,13 +1,14 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import AppError from 'src/shared/errors/app-error';
 import { CreateRuralProducerDto } from '../dtos/create-rural-producer.dto';
 import RuralProducerRepositoryImplementation from '../infra/database/repositories/implementations/rural-producer-repository-implementation';
 import { CreateRuralProducersService } from '../services/create-rural-producers.service';
 
 describe('CreateRuralProducersService', () => {
   let service: CreateRuralProducersService;
-
+  let mockModule: TestingModule;
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    mockModule = await Test.createTestingModule({
       providers: [
         RuralProducerRepositoryImplementation,
         CreateRuralProducersService,
@@ -20,17 +21,21 @@ describe('CreateRuralProducersService', () => {
       ],
     }).compile();
 
-    service = module.get<CreateRuralProducersService>(
+    service = mockModule.get<CreateRuralProducersService>(
       CreateRuralProducersService,
     );
   });
 
-  it('should be defined', async () => {
+  afterAll(async () => {
+    await mockModule.close();
+  });
+
+  it('should be able to create rural producer', async () => {
     const ruralProducer = await service.execute({
       agricultural_hectares_area: 99,
       city: 'Brasília',
       crops_planted: ['coffee'],
-      document_number: '00000000000',
+      document_number: '036.872.311-94',
       farm_hectares_total_area: 202,
       farm_name: 'Test Farm',
       producer_name: 'Test Producer',
@@ -38,5 +43,21 @@ describe('CreateRuralProducersService', () => {
       vegetation_hectares_area: 55,
     });
     expect(ruralProducer).toBeDefined();
+  });
+
+  it('should not be able to create rural producer if the cpf/cnpj is not valid', async () => {
+    await expect(
+      service.execute({
+        agricultural_hectares_area: 99,
+        city: 'Brasília',
+        crops_planted: ['coffee'],
+        document_number: '00000000000',
+        farm_hectares_total_area: 202,
+        farm_name: 'Test Farm',
+        producer_name: 'Test Producer',
+        state: 'DF',
+        vegetation_hectares_area: 55,
+      }),
+    ).rejects.toEqual(new AppError('CPF/CNPJ is not valid', 422));
   });
 });
