@@ -1,7 +1,9 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { CreateRuralProducerDto } from 'src/modules/rural-producers/dtos/create-rural-producer.dto';
 import { CreateRuralProducersService } from 'src/modules/rural-producers/services/create-rural-producers.service';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Rural Producers')
 @Controller('rural-producers')
 export class RuralProducersController {
   constructor(
@@ -9,6 +11,22 @@ export class RuralProducersController {
   ) {}
 
   @Post()
+  @ApiCreatedResponse({
+    description: 'Created',
+    status: 201,
+    schema: {
+      allOf: [
+        {
+          type: 'object',
+          properties: {
+            message: {
+              type: 'string',
+            },
+          },
+        },
+      ],
+    },
+  })
   create(@Body() createRuralProducerDto: CreateRuralProducerDto) {
     return this.createRuralProducersService.execute(createRuralProducerDto);
   }
