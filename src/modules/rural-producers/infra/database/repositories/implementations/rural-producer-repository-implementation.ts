@@ -25,19 +25,23 @@ export default class RuralProducerRepositoryImplementation
     state,
     vegetation_hectares_area,
   }: CreateRuralProducerDto): Promise<RuralProducer> {
-    const client = await this.ruralProducerRepository.save({
-      id: generateUUID.createUUID(),
-      agriculturalHectaresArea: agricultural_hectares_area,
-      city: city,
-      documentNumber: document_number,
-      farmHectaresTotalArea: farm_hectares_total_area,
-      farmName: farm_name,
-      producerName: producer_name,
-      state: state,
-      vegetationHectaresArea: vegetation_hectares_area,
-      cropsPlanted: crops_planted,
-    });
+    try {
+      const client = await this.ruralProducerRepository.save({
+        id: generateUUID.createUUID(),
+        agriculturalHectaresArea: agricultural_hectares_area,
+        city: city,
+        documentNumber: document_number,
+        farmHectaresTotalArea: farm_hectares_total_area,
+        farmName: farm_name,
+        producerName: producer_name,
+        state: state,
+        vegetationHectaresArea: vegetation_hectares_area,
+        cropsPlanted: crops_planted,
+      });
 
-    return client;
+      return client;
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
