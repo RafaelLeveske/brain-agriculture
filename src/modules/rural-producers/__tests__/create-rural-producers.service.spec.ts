@@ -60,4 +60,25 @@ describe('CreateRuralProducersService', () => {
       }),
     ).rejects.toEqual(new AppError('CPF/CNPJ is not valid', 422));
   });
+
+  it('should not be able to create if the sum of agricultural area and vegetation area is greater than the farm total area', async () => {
+    await expect(
+      service.execute({
+        agricultural_hectares_area: 399,
+        city: 'Brasília',
+        crops_planted: ['coffee'],
+        document_number: '00000000000',
+        farm_hectares_total_area: 202,
+        farm_name: 'Test Farm',
+        producer_name: 'Test Producer',
+        state: 'DF',
+        vegetation_hectares_area: 55,
+      }),
+    ).rejects.toEqual(
+      new AppError(
+        'The sum of agricultural area and vegetation area can not be greater than the farm total area',
+        400,
+      ),
+    );
+  });
 });

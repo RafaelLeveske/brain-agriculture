@@ -14,8 +14,29 @@ export class CreateRuralProducersService {
   public async execute(
     createRuralProducerDto: CreateRuralProducerDto,
   ): Promise<CreateRuralProducersServicesResponse> {
-    const strippedDocumentNumber =
-      createRuralProducerDto.document_number.replace(/\D/g, '');
+    const {
+      agricultural_hectares_area,
+      city,
+      crops_planted,
+      document_number,
+      farm_hectares_total_area,
+      farm_name,
+      producer_name,
+      state,
+      vegetation_hectares_area,
+    } = createRuralProducerDto;
+
+    const sumOfAgriculturalAndVegetationArea =
+      vegetation_hectares_area + agricultural_hectares_area;
+
+    if (sumOfAgriculturalAndVegetationArea > farm_hectares_total_area) {
+      throw new AppError(
+        'The sum of agricultural area and vegetation area can not be greater than the farm total area',
+        400,
+      );
+    }
+
+    const strippedDocumentNumber = document_number.replace(/\D/g, '');
 
     if (
       !cpfValidator.isValid(strippedDocumentNumber) &&
@@ -25,18 +46,17 @@ export class CreateRuralProducersService {
     }
 
     await this.ruralProducerRepositoryImplementation.createRuralProducer({
-      agricultural_hectares_area:
-        createRuralProducerDto.agricultural_hectares_area,
-      city: createRuralProducerDto.city,
-      document_number: createRuralProducerDto.document_number,
-      farm_hectares_total_area: createRuralProducerDto.farm_hectares_total_area,
-      farm_name: createRuralProducerDto.farm_name,
-      producer_name: createRuralProducerDto.producer_name,
-      state: createRuralProducerDto.state,
-      vegetation_hectares_area: createRuralProducerDto.vegetation_hectares_area,
-      crops_planted: createRuralProducerDto.crops_planted,
+      agricultural_hectares_area,
+      city,
+      document_number,
+      farm_hectares_total_area,
+      farm_name,
+      producer_name,
+      state,
+      vegetation_hectares_area,
+      crops_planted,
     });
 
-    return { message: 'Produtor rural criado com sucesso' };
+    return { message: 'Rural producer created' };
   }
 }
