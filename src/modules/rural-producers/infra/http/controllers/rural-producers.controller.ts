@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { CreateRuralProducerDto } from 'src/modules/rural-producers/dtos/create-rural-producer.dto';
 import { CreateRuralProducersService } from 'src/modules/rural-producers/services/create-rural-producers.service';
 import {
@@ -6,12 +6,14 @@ import {
   ApiTags,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
+import { ListRuralProducerDashboardService } from 'src/modules/rural-producers/services/list-rural-producer-dashboard.service';
 
 @ApiTags('Rural Producers')
 @Controller('rural-producers')
 export class RuralProducersController {
   constructor(
     private readonly createRuralProducersService: CreateRuralProducersService,
+    private readonly listRuralProducerDashboardService: ListRuralProducerDashboardService,
   ) {}
 
   @Post()
@@ -59,5 +61,10 @@ export class RuralProducersController {
   })
   create(@Body() createRuralProducerDto: CreateRuralProducerDto) {
     return this.createRuralProducersService.execute(createRuralProducerDto);
+  }
+
+  @Get('dashboard')
+  list() {
+    return this.listRuralProducerDashboardService.execute();
   }
 }
