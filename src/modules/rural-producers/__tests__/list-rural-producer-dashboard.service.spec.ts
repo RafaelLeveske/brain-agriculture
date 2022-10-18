@@ -69,8 +69,6 @@ describe('ListRuralProducerDashboardService', () => {
   it('should be able to create rural producer', async () => {
     const response = await service.execute();
 
-    console.log(response);
-
     expect(response).toBeDefined();
   });
 });

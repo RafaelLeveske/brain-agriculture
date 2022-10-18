@@ -14,8 +14,6 @@ export class ListRuralProducerDashboardService {
     const clients =
       await this.ruralProducerRepositoryImplementation.listRuralProducers();
 
-    console.log(clients);
-
     const totalFarmsInHectares = clients.map(
       (clients: RuralProducer) => clients.farmHectaresTotalArea,
     );

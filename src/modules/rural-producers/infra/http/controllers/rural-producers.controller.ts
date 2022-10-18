@@ -3,10 +3,12 @@ import { CreateRuralProducerDto } from 'src/modules/rural-producers/dtos/create-
 import { CreateRuralProducersService } from 'src/modules/rural-producers/services/create-rural-producers.service';
 import {
   ApiCreatedResponse,
+  ApiOkResponse,
   ApiTags,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
 import { ListRuralProducerDashboardService } from 'src/modules/rural-producers/services/list-rural-producer-dashboard.service';
+import swaggerCreateRuralProducerResponseOptions from '../../../utils/swagger-create-rural-producer-response-options';
 
 @ApiTags('Rural Producers')
 @Controller('rural-producers')
@@ -17,53 +19,20 @@ export class RuralProducersController {
   ) {}
 
   @Post()
-  @ApiCreatedResponse({
-    description: 'Created',
-    status: 201,
-    schema: {
-      example: {
-        message: 'Produtor rural criado com sucesso',
-      },
-      allOf: [
-        {
-          type: 'object',
-          properties: {
-            message: {
-              type: 'string',
-            },
-          },
-        },
-      ],
-    },
-  })
-  @ApiUnprocessableEntityResponse({
-    description: 'Unprocessable Entity',
-    status: 422,
-    schema: {
-      example: {
-        statusCode: 422,
-        message: 'CPF/CNPJ is not valid',
-      },
-      allOf: [
-        {
-          type: 'object',
-          properties: {
-            message: {
-              type: 'string',
-            },
-            statusCode: {
-              type: 'number',
-            },
-          },
-        },
-      ],
-    },
-  })
+  @ApiCreatedResponse(
+    swaggerCreateRuralProducerResponseOptions.createRuralProducerApiCreatedResponse(),
+  )
+  @ApiUnprocessableEntityResponse(
+    swaggerCreateRuralProducerResponseOptions.createRuralProducerApiUnprocessableEntityResponse(),
+  )
   create(@Body() createRuralProducerDto: CreateRuralProducerDto) {
     return this.createRuralProducersService.execute(createRuralProducerDto);
   }
 
   @Get('dashboard')
+  @ApiOkResponse(
+    swaggerCreateRuralProducerResponseOptions.listRuralProducerApiOkResponse(),
+  )
   list() {
     return this.listRuralProducerDashboardService.execute();
   }
