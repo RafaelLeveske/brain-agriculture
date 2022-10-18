@@ -67,7 +67,7 @@ describe('CreateRuralProducersService', () => {
         agricultural_hectares_area: 399,
         city: 'Brasília',
         crops_planted: ['coffee'],
-        document_number: '00000000000',
+        document_number: '036.872.311-94',
         farm_hectares_total_area: 202,
         farm_name: 'Test Farm',
         producer_name: 'Test Producer',

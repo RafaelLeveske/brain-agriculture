@@ -4,6 +4,7 @@ import RuralProducerRepositoryImplementation from '../infra/database/repositorie
 import { ruralProducerRepository } from '../infra/database/repositories/rural-producers.repository';
 import { RuralProducersController } from '../infra/http/controllers/rural-producers.controller';
 import { CreateRuralProducersService } from '../services/create-rural-producers.service';
+import { ListRuralProducerDashboardService } from '../services/list-rural-producer-dashboard.service';
 
 @Module({
   imports: [DatabaseModule],
@@ -11,6 +12,7 @@ import { CreateRuralProducersService } from '../services/create-rural-producers.
   providers: [
     ...ruralProducerRepository,
     CreateRuralProducersService,
+    ListRuralProducerDashboardService,
     RuralProducerRepositoryImplementation,
   ],
 })

@@ -13,4 +13,6 @@ export default interface RuralProducerRepositoryModel {
     state,
     vegetation_hectares_area,
   }: CreateRuralProducerDto): Promise<RuralProducer>;
+
+  listRuralProducers(): Promise<RuralProducer[]>;
 }

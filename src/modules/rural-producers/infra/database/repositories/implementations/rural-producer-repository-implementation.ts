@@ -14,6 +14,15 @@ export default class RuralProducerRepositoryImplementation
     @Inject('RURAL_PRODUCER_REPOSITORY')
     private ruralProducerRepository: Repository<RuralProducer>,
   ) {}
+  async listRuralProducers(): Promise<RuralProducer[]> {
+    try {
+      const clients = await this.ruralProducerRepository.find();
+
+      return clients;
+    } catch (error) {
+      throw new AppError(error.message);
+    }
+  }
 
   async createRuralProducer({
     agricultural_hectares_area,
