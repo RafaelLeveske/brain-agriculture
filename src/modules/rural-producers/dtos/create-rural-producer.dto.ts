@@ -7,6 +7,7 @@ import {
   Validate,
 } from 'class-validator';
 import { ValidateCropsPlanted } from '../infra/http/validators/validate-crops-planted';
+import { ValidateStatesUf } from '../infra/http/validators/validate-states-uf';
 
 export type CropsPlantedType =
   | 'soy'
@@ -14,6 +15,35 @@ export type CropsPlantedType =
   | 'cotton'
   | 'coffee'
   | 'sugar_cane';
+
+export type StatesType =
+  | 'AC'
+  | 'AL'
+  | 'AP'
+  | 'AM'
+  | 'BA'
+  | 'CE'
+  | 'DF'
+  | 'GO'
+  | 'ES'
+  | 'MA'
+  | 'MT'
+  | 'MS'
+  | 'MG'
+  | 'PA'
+  | 'PB'
+  | 'PR'
+  | 'PE'
+  | 'PI'
+  | 'RJ'
+  | 'RN'
+  | 'RS'
+  | 'RO'
+  | 'RR'
+  | 'SP'
+  | 'SC'
+  | 'SE'
+  | 'TO';
 
 export class CreateRuralProducerDto {
   @IsString()
@@ -50,11 +80,42 @@ export class CreateRuralProducerDto {
 
   @IsString()
   @IsNotEmpty()
+  @Validate(ValidateStatesUf)
   @ApiProperty({
     type: String,
+    enum: [
+      'AC',
+      'AL',
+      'AP',
+      'AM',
+      'BA',
+      'CE',
+      'DF',
+      'GO',
+      'ES',
+      'MA',
+      'MT',
+      'MS',
+      'MG',
+      'PA',
+      'PB',
+      'PR',
+      'PE',
+      'PI',
+      'RJ',
+      'RN',
+      'RS',
+      'RO',
+      'RR',
+      'SP',
+      'SC',
+      'SE',
+      'TO',
+    ],
+    isArray: false,
     description: 'This is a required property',
   })
-  state: string;
+  state: StatesType;
 
   @IsNumber()
   @IsNotEmpty()
