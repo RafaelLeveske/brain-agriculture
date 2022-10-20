@@ -29,4 +29,8 @@ export default interface RuralProducerRepositoryModel {
   }: EditRuralProducerDto): Promise<RuralProducer>;
 
   listRuralProducers(): Promise<RuralProducer[]>;
+
+  destroyRuralProducer(id: string): Promise<void>;
+
+  findOneRuralProducer(id: string): Promise<RuralProducer | null>;
 }

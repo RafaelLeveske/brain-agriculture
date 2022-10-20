@@ -15,6 +15,32 @@ export default class RuralProducerRepositoryImplementation
     @Inject('RURAL_PRODUCER_REPOSITORY')
     private ruralProducerRepository: Repository<RuralProducer>,
   ) {}
+  async findOneRuralProducer(id: string): Promise<RuralProducer | null> {
+    try {
+      const client = await this.ruralProducerRepository.findOne({
+        where: {
+          id,
+        },
+      });
+
+      if (!client) return null;
+
+      return client;
+    } catch (error) {
+      throw new AppError(error.message);
+    }
+  }
+
+  async destroyRuralProducer(id: string): Promise<void> {
+    try {
+      await this.ruralProducerRepository.delete({
+        id,
+      });
+    } catch (error) {
+      throw new AppError(error.message);
+    }
+  }
+
   async updateRuralProducer({
     id,
     agricultural_hectares_area,
@@ -27,20 +53,24 @@ export default class RuralProducerRepositoryImplementation
     state,
     vegetation_hectares_area,
   }: EditRuralProducerDto): Promise<RuralProducer> {
-    const client = await this.ruralProducerRepository.save({
-      id,
-      agriculturalHectaresArea: agricultural_hectares_area,
-      city: city,
-      cropsPlanted: crops_planted,
-      documentNumber: document_number,
-      farmHectaresTotalArea: farm_hectares_total_area,
-      farmName: farm_name,
-      producerName: producer_name,
-      state,
-      vegetationHectaresArea: vegetation_hectares_area,
-    });
+    try {
+      const client = await this.ruralProducerRepository.save({
+        id,
+        agriculturalHectaresArea: agricultural_hectares_area,
+        city: city,
+        cropsPlanted: crops_planted,
+        documentNumber: document_number,
+        farmHectaresTotalArea: farm_hectares_total_area,
+        farmName: farm_name,
+        producerName: producer_name,
+        state,
+        vegetationHectaresArea: vegetation_hectares_area,
+      });
 
-    return client;
+      return client;
+    } catch (error) {
+      throw new AppError(error.message);
+    }
   }
 
   async listRuralProducers(): Promise<RuralProducer[]> {
