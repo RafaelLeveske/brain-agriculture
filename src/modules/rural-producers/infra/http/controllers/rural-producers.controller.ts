@@ -1,9 +1,18 @@
-import { Controller, Post, Body, Get, Put, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { CreateRuralProducerDto } from 'src/modules/rural-producers/dtos/create-rural-producer.dto';
 import { CreateRuralProducersService } from 'src/modules/rural-producers/services/create-rural-producers.service';
 import {
   ApiCreatedResponse,
   ApiOkResponse,
+  ApiNotFoundResponse,
   ApiTags,
   ApiUnprocessableEntityResponse,
 } from '@nestjs/swagger';
@@ -11,6 +20,7 @@ import { ListRuralProducerDashboardService } from 'src/modules/rural-producers/s
 import swaggerCreateRuralProducerResponseOptions from '../../../utils/swagger-create-rural-producer-response-options';
 import { EditRuralProducerDto } from 'src/modules/rural-producers/dtos/edit-rural-producer.dto';
 import { EditRuralProducersService } from 'src/modules/rural-producers/services/edit-rural-producers.service';
+import { DestroyRuralProducersService } from 'src/modules/rural-producers/services/destroy-rural-producers.service';
 
 @ApiTags('Rural Producers')
 @Controller('rural-producers')
@@ -19,6 +29,7 @@ export class RuralProducersController {
     private readonly createRuralProducersService: CreateRuralProducersService,
     private readonly listRuralProducerDashboardService: ListRuralProducerDashboardService,
     private readonly editRuralProducersService: EditRuralProducersService,
+    private readonly destroyRuralProducersService: DestroyRuralProducersService,
   ) {}
 
   @Post()
@@ -75,5 +86,16 @@ export class RuralProducersController {
       state,
       vegetation_hectares_area,
     });
+  }
+
+  @ApiOkResponse(
+    swaggerCreateRuralProducerResponseOptions.destroyRuralProducerApiOkResponse(),
+  )
+  @ApiNotFoundResponse(
+    swaggerCreateRuralProducerResponseOptions.destroyRuralProducerApiNotFoundResponse(),
+  )
+  @Delete(':id')
+  destroy(@Param('id') id: string) {
+    return this.destroyRuralProducersService.execute(id);
   }
 }

@@ -441,4 +441,60 @@ export default {
       },
     };
   },
+
+  destroyRuralProducerApiOkResponse(): IResponseOptions {
+    return {
+      description: 'OK',
+      status: 200,
+      content: {
+        'application/json': {
+          schema: {
+            allOf: [
+              {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                  },
+                },
+              },
+            ],
+          },
+          example: {
+            message: 'Rural Producer deleted',
+          },
+        },
+      },
+    };
+  },
+
+  destroyRuralProducerApiNotFoundResponse(): IResponseOptions {
+    return {
+      description: 'Not Found',
+      status: 404,
+      content: {
+        'application/json': {
+          schema: {
+            allOf: [
+              {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                  },
+                  statusCode: {
+                    type: 'number',
+                  },
+                },
+              },
+            ],
+          },
+          example: {
+            statusCode: 404,
+            message: 'Rural producer not found',
+          },
+        },
+      },
+    };
+  },
 };
