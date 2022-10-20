@@ -16,15 +16,84 @@ export default {
               {
                 type: 'object',
                 properties: {
-                  message: {
+                  id: {
                     type: 'string',
+                  },
+                  agricultural_hectares_area: {
+                    type: 'number',
+                  },
+                  city: {
+                    type: 'string',
+                  },
+                  crops_planted: {
+                    type: 'array',
+                    items: {
+                      type: 'string',
+                      enum: ['soy', 'corn', 'cotton', 'coffee', 'sugar_cane'],
+                    },
+                  },
+                  document_number: {
+                    type: 'string',
+                  },
+                  farm_hectares_total_area: {
+                    type: 'number',
+                  },
+                  farm_name: {
+                    type: 'string',
+                  },
+                  producer_name: {
+                    type: 'string',
+                  },
+                  vegetation_hectares_area: {
+                    type: 'number',
+                  },
+                  state: {
+                    type: 'string',
+                    enum: [
+                      'AC',
+                      'AL',
+                      'AP',
+                      'AM',
+                      'BA',
+                      'CE',
+                      'DF',
+                      'GO',
+                      'ES',
+                      'MA',
+                      'MT',
+                      'MS',
+                      'MG',
+                      'PA',
+                      'PB',
+                      'PR',
+                      'PE',
+                      'PI',
+                      'RJ',
+                      'RN',
+                      'RS',
+                      'RO',
+                      'RR',
+                      'SP',
+                      'SC',
+                      'SE',
+                      'TO',
+                    ],
                   },
                 },
               },
             ],
           },
           example: {
-            message: 'Produtor rural criado com sucesso',
+            id: '2bb94137-ef05-4e6c-b3d6-0e7fa2418818',
+            agricultural_hectares_area: 22,
+            city: 'string',
+            crops_planted: ['soy', 'corn', 'cotton', 'coffee', 'sugar_cane'],
+            document_number: '00.000.000/0001-00',
+            farm_hectares_total_area: 889,
+            farm_name: 'string',
+            producer_name: 'rafael',
+            vegetation_hectares_area: 99,
+            state: 'AC',
           },
         },
       },
@@ -242,6 +311,131 @@ export default {
               agricultural_hectares_area: 956,
               vegetation_hectares_area: 29961,
             },
+          },
+        },
+      },
+    };
+  },
+
+  editRuralProducerApiOkResponse(): IResponseOptions {
+    return {
+      description: 'OK',
+      status: 200,
+      content: {
+        'application/json': {
+          schema: {
+            allOf: [
+              {
+                type: 'object',
+                properties: {
+                  id: {
+                    type: 'string',
+                  },
+                  agricultural_hectares_area: {
+                    type: 'number',
+                  },
+                  city: {
+                    type: 'string',
+                  },
+                  crops_planted: {
+                    type: 'array',
+                    items: {
+                      type: 'string',
+                      enum: ['soy', 'corn', 'cotton', 'coffee', 'sugar_cane'],
+                    },
+                  },
+                  document_number: {
+                    type: 'string',
+                  },
+                  farm_hectares_total_area: {
+                    type: 'number',
+                  },
+                  farm_name: {
+                    type: 'string',
+                  },
+                  producer_name: {
+                    type: 'string',
+                  },
+                  vegetation_hectares_area: {
+                    type: 'number',
+                  },
+                  state: {
+                    type: 'string',
+                    enum: [
+                      'AC',
+                      'AL',
+                      'AP',
+                      'AM',
+                      'BA',
+                      'CE',
+                      'DF',
+                      'GO',
+                      'ES',
+                      'MA',
+                      'MT',
+                      'MS',
+                      'MG',
+                      'PA',
+                      'PB',
+                      'PR',
+                      'PE',
+                      'PI',
+                      'RJ',
+                      'RN',
+                      'RS',
+                      'RO',
+                      'RR',
+                      'SP',
+                      'SC',
+                      'SE',
+                      'TO',
+                    ],
+                  },
+                },
+              },
+            ],
+          },
+          example: {
+            id: '2bb94137-ef05-4e6c-b3d6-0e7fa2418818',
+            agricultural_hectares_area: 22,
+            city: 'string',
+            crops_planted: ['soy', 'corn', 'cotton', 'coffee', 'sugar_cane'],
+            document_number: '00.000.000/0001-00',
+            farm_hectares_total_area: 889,
+            farm_name: 'string',
+            producer_name: 'rafael',
+            vegetation_hectares_area: 99,
+            state: 'AC',
+          },
+        },
+      },
+    };
+  },
+
+  editRuralProducerApiUnprocessableEntityResponse(): IResponseOptions {
+    return {
+      description: 'Unprocessable Entity',
+      status: 422,
+      content: {
+        'application/json': {
+          schema: {
+            allOf: [
+              {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                  },
+                  statusCode: {
+                    type: 'number',
+                  },
+                },
+              },
+            ],
+          },
+          example: {
+            statusCode: 422,
+            message: 'CPF/CNPJ is not valid',
           },
         },
       },
