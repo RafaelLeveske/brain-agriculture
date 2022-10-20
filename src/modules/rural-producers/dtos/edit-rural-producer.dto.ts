@@ -45,7 +45,13 @@ export type StatesType =
   | 'SE'
   | 'TO';
 
-export class CreateRuralProducerDto {
+export class EditRuralProducerDto {
+  @ApiProperty({
+    type: String,
+    description: 'This is a required property',
+  })
+  id: string;
+
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
@@ -150,17 +156,4 @@ export class CreateRuralProducerDto {
     description: 'This is a required property',
   })
   crops_planted: CropsPlantedType[];
-}
-
-export class CreateRuralProducersServicesResponse {
-  id: string;
-  agricultural_hectares_area: number;
-  city: string;
-  crops_planted: CropsPlantedType[];
-  document_number: string;
-  farm_hectares_total_area: number;
-  farm_name: string;
-  producer_name: string;
-  state: string;
-  vegetation_hectares_area: number;
 }
