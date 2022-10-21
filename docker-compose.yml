@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+  brain_agriculture:
+    image: postgres
+    container_name: postgres_brain_agriculture
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mysecretpassword}
+      POSTGRES_DB: ${POSTGRES_DB:-brain_agriculture}
+      POSTGRES_HOST: ${POSTGRES_HOST:-127.0.0.1}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+    volumes:
+       - pgdata:/data/postgres
+    network_mode: host
+  app:
+    build: .
+    container_name: brain_agriculture
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
+    network_mode: host
+
+volumes:
+    pgdata:
+      driver: local
