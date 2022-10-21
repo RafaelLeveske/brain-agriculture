@@ -52,7 +52,7 @@ $ npm run start:dev
 
 ## Para testar as rotas da aplicação acesse o link abaixo:
 
-[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=crud_node&uri=https%3A%2F%2Fraw.githubusercontent.com%2FRafaelLeveske%2Fcrud-node%2Fmaster%2FInsomnia_crud_node)
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=brain-agriculture&uri=https%3A%2F%2Fraw.githubusercontent.com%2FRafaelLeveske%2Fbrain-agriculture%2Fmaster%2FInsomnia_brain_agriculture.json)
 
 
 ## ⛏️ Built Using <a name = "built_using"></a>
