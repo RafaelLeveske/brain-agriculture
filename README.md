@@ -68,6 +68,7 @@ $ npm run start:dev
   "crops_planted": ["soy", "corn", "cotton", "coffee", "sugar_cane"]
 }
 ```
+---
 #### Editar produtor rural
 ##### Método: PUT
 ##### Endpoint: /rural-producers/{rural_producer_id}
@@ -85,6 +86,7 @@ $ npm run start:dev
   "crops_planted": ["soy", "corn", "cotton", "coffee"]
 }
 ```
+---
 #### Listar dashboard
 ##### Método: GET
 ##### Endpoint: /rural-producers/dashboard
@@ -92,6 +94,7 @@ $ npm run start:dev
 #### Deletar produtor rural
 ##### Método: DELETE
 ##### Endpoint: /rural-producers/{rural_producer_id}
+--
 
 ## Para testar as rotas da aplicação acesse o link abaixo:
 
