@@ -412,6 +412,36 @@ export default {
     };
   },
 
+  editRuralProducerApiNotFoundResponse(): IResponseOptions {
+    return {
+      description: 'Not Found',
+      status: 404,
+      content: {
+        'application/json': {
+          schema: {
+            allOf: [
+              {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                  },
+                  statusCode: {
+                    type: 'number',
+                  },
+                },
+              },
+            ],
+          },
+          example: {
+            statusCode: 404,
+            message: 'Rural producer not found',
+          },
+        },
+      },
+    };
+  },
+
   editRuralProducerApiUnprocessableEntityResponse(): IResponseOptions {
     return {
       description: 'Unprocessable Entity',

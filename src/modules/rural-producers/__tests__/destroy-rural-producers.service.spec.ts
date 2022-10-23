@@ -1,3 +1,4 @@
+import { ModuleMetadata } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppError } from 'src/shared/errors/app-error';
 import RuralProducerRepositoryImplementation from '../infra/database/repositories/implementations/rural-producer-repository-implementation';
@@ -6,13 +7,11 @@ import { DestroyRuralProducersService } from '../services/destroy-rural-producer
 describe('DestroyRuralProducersService', () => {
   let service: DestroyRuralProducersService;
   let mockModule: TestingModule;
+  let mockSuccessModuleMetadata: ModuleMetadata;
+  let mockFailedModuleMetadata: ModuleMetadata;
 
-  afterAll(async () => {
-    await mockModule.close();
-  });
-
-  it('should be able to delete rural producer', async () => {
-    mockModule = await Test.createTestingModule({
+  beforeEach(async () => {
+    mockSuccessModuleMetadata = {
       providers: [
         RuralProducerRepositoryImplementation,
         DestroyRuralProducersService,
@@ -35,18 +34,9 @@ describe('DestroyRuralProducersService', () => {
           },
         },
       ],
-    }).compile();
+    };
 
-    service = mockModule.get<DestroyRuralProducersService>(
-      DestroyRuralProducersService,
-    );
-
-    const ruralProducer = await service.execute('123');
-    expect(ruralProducer.message).toBe('Rural Producer deleted');
-  });
-
-  it('should not be able to delete rural producer if the rural producer is not found', async () => {
-    mockModule = await Test.createTestingModule({
+    mockFailedModuleMetadata = {
       providers: [
         RuralProducerRepositoryImplementation,
         DestroyRuralProducersService,
@@ -58,7 +48,30 @@ describe('DestroyRuralProducersService', () => {
           },
         },
       ],
-    }).compile();
+    };
+  });
+
+  afterAll(async () => {
+    await mockModule.close();
+  });
+
+  it('should be able to delete rural producer', async () => {
+    mockModule = await Test.createTestingModule(
+      mockSuccessModuleMetadata,
+    ).compile();
+
+    service = mockModule.get<DestroyRuralProducersService>(
+      DestroyRuralProducersService,
+    );
+
+    const ruralProducer = await service.execute('123');
+    expect(ruralProducer.message).toBe('Rural Producer deleted');
+  });
+
+  it('should not be able to delete rural producer if the rural producer is not found', async () => {
+    mockModule = await Test.createTestingModule(
+      mockFailedModuleMetadata,
+    ).compile();
 
     service = mockModule.get<DestroyRuralProducersService>(
       DestroyRuralProducersService,
