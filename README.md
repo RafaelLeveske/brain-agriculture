@@ -94,7 +94,7 @@ $ npm run start:dev
 #### Deletar produtor rural
 ##### Método: DELETE
 ##### Endpoint: /rural-producers/{rural_producer_id}
---
+---
 
 ## Para testar as rotas da aplicação acesse o link abaixo:
 
