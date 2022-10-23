@@ -57,15 +57,15 @@ $ npm run start:dev
 
 ```bash
 {
-	"document_number": "22.165.622/0001-02",
-	"producer_name": "rafael",
- 	"farm_name": "string",
-	"city": "string",
-	"state": "AC",
-	"farm_hectares_total_area": 889,
-	"agricultural_hectares_area": 22,
-	"vegetation_hectares_area": 99,
-	"crops_planted": ["soy", "corn", "cotton", "coffee", "sugar_cane"]
+"document_number": "22.165.622/0001-02",
+"producer_name": "rafael",
+"farm_name": "string",
+"city": "string",
+"state": "AC",
+"farm_hectares_total_area": 889,
+"agricultural_hectares_area": 22,
+"vegetation_hectares_area": 99,
+"crops_planted": ["soy", "corn", "cotton", "coffee", "sugar_cane"]
 }
 ```
 #### Criar produtor rural
