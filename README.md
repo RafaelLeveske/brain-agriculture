@@ -88,19 +88,19 @@ $ npm run start:dev
 #### Listar dashboard
 ##### Método: GET
 ##### Endpoint: /rural-producers/dashboard
-
+---
 #### Deletar produtor rural
 ##### Método: DELETE
 ##### Endpoint: /rural-producers/{rural_producer_id}
-
-#### Documentação Swagger
-##### Método: GET
-##### Endpoint: /api-docs
 
 ## Para testar as rotas da aplicação acesse o link abaixo:
 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=brain-agriculture&uri=https%3A%2F%2Fraw.githubusercontent.com%2FRafaelLeveske%2Fbrain-agriculture%2Fmaster%2FInsomnia_brain_agriculture.json)
 
+## Para testar também pode ser usado a documentação do Swagger:
+#### Documentação Swagger
+##### Método: GET
+##### Endpoint: /api-docs
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
