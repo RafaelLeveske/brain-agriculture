@@ -74,29 +74,28 @@ $ npm run start:dev
 ##### Body:
 ```bash
 {
-"document_number": "22.165.622/0001-02",
-"producer_name": "rafael eraldo",
-"farm_name": "string",
-"city": "string",
-"state": "AM",
-"farm_hectares_total_area": 889,
-"agricultural_hectares_area": 22,
-"vegetation_hectares_area": 99,
-"crops_planted": ["soy", "corn", "cotton", "coffee"]
+  "document_number": "22.165.622/0001-02",
+  "producer_name": "rafael eraldo",
+  "farm_name": "string",
+  "city": "string",
+  "state": "AM",
+  "farm_hectares_total_area": 889,
+  "agricultural_hectares_area": 22,
+  "vegetation_hectares_area": 99,
+  "crops_planted": ["soy", "corn", "cotton", "coffee"]
 }
 ```
-#### Criar produtor rural
-```bash
+#### Listar dashboard
+##### Método: GET
+##### Endpoint: /rural-producers/dashboard
 
-```
-#### Criar produtor rural
-```bash
+#### Deletar produtor rural
+##### Método: DELETE
+##### Endpoint: /rural-producers/{rural_producer_id}
 
-```
-#### Criar produtor rural
-```bash
-
-```
+#### Documentação Swagger
+##### Método: GET
+##### Endpoint: /api-docs
 
 ## Para testar as rotas da aplicação acesse o link abaixo:
 
