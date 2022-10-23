@@ -26,6 +26,13 @@ export class EditRuralProducersService {
       vegetation_hectares_area,
     } = editRuralProducerDto;
 
+    const ruralProducer =
+      await this.ruralProducerRepositoryImplementation.findOneRuralProducer(id);
+
+    if (!ruralProducer) {
+      throw new AppError('Rural producer not found', 404);
+    }
+
     const sumOfAgriculturalAndVegetationArea =
       vegetation_hectares_area + agricultural_hectares_area;
 

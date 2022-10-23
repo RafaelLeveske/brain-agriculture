@@ -54,6 +54,9 @@ export class RuralProducersController {
   @ApiOkResponse(
     swaggerCreateRuralProducerResponseOptions.editRuralProducerApiOkResponse(),
   )
+  @ApiNotFoundResponse(
+    swaggerCreateRuralProducerResponseOptions.editRuralProducerApiNotFoundResponse(),
+  )
   @ApiUnprocessableEntityResponse(
     swaggerCreateRuralProducerResponseOptions.editRuralProducerApiUnprocessableEntityResponse(),
   )
